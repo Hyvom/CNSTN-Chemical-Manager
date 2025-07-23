@@ -1,24 +1,25 @@
 package com.example.demo.Enteties;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity @AllArgsConstructor @NoArgsConstructor @Data
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nom;
-	private String prenom;
-	private String login;
-	private String adresse;
-	private String email;
-	private String tel;
-	private String Aboratoir;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nom;
+    private String email;
+    private String motDePasse;
+    private String role = "USER"; //role pour distinguer user et admin ?
+
+    @OneToMany(mappedBy = "user")
+    private List<Demande> demandes;
+
 }

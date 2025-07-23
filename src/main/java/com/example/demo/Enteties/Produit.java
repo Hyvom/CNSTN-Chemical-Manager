@@ -17,8 +17,12 @@ public class Produit {
 	private Long id;
 	private String nom;
 	private String concentration;
+	private String status;
 	private Date dateAjout;
 	private double volume;
 	private double prix;
 	private String description;
+	public void setUnite(String newStatus) {
+		status=newStatus;
+	}
 }

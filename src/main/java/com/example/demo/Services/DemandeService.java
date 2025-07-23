@@ -2,9 +2,8 @@ package com.example.demo.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.Enteties.Produit;
-import com.example.demo.Repositories.ProduitRepository;
+import com.example.demo.Enteties.Demande;
+import com.example.demo.Repositories.DemandeRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,21 +12,21 @@ import java.util.Optional;
 public class DemandeService {
 
     @Autowired
-    private ProduitRepository produitRepository;
+    private DemandeRepository demandeRepository;
 
-    public List<Produit> getAll() {
-        return produitRepository.findAll();
+    public List<Demande> getAll() {
+        return demandeRepository.findAll();
     }
 
-    public Optional<Produit> getById(Long id) {
-        return produitRepository.findById(id);
+    public Optional<Demande> getById(Long id) {
+        return demandeRepository.findById(id);
     }
 
-    public Produit save(Produit produit) {
-        return produitRepository.save(produit);
+    public Demande save(Demande demande) {
+        return demandeRepository.save(demande);
     }
 
     public void delete(Long id) {
-        produitRepository.deleteById(id);
+        demandeRepository.deleteById(id);
     }
 }

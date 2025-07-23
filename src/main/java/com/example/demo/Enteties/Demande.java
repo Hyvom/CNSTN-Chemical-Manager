@@ -1,24 +1,30 @@
 package com.example.demo.Enteties;
 
-import java.util.Date;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity @AllArgsConstructor @NoArgsConstructor @Data
 public class Demande {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String demandeur;
-	private Date dateDemande;
-	private String statut;
-	private double volume;
-	private String description;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nomDemandeur;
+    private String serviceDemandeur;   
+    private String etat;               
+    private int quantite;
+    private LocalDate dateDemande;
+
+    @ManyToOne
+    @JoinColumn(name = "produit_id")
+    private Produit produit;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
