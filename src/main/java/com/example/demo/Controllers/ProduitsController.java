@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Enteties.Produit;
 import com.example.demo.Services.ProduitService;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/produits")
@@ -18,11 +21,13 @@ public class ProduitsController {
     private ProduitService produitService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Produit> getAll() {
         return produitService.getAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Produit> getById(@PathVariable Long id) {
         return produitService.getById(id)
                 .map(ResponseEntity::ok)
@@ -30,12 +35,15 @@ public class ProduitsController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public Produit add(@RequestBody Produit produit) {
         return produitService.save(produit);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long id) {
         produitService.delete(id);
     }
 }
+
